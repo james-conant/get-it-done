@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import "./App.css";
+import React, { useState } from "react";
+import TodoForm from "./components/TodoForm";
 
-const App = () => {
+const App = (props) => {
   return (
-    <Fragment>
-      <h1>to do list</h1>
-    </Fragment>
+    <div className="app">
+      <TodoForm />
+    </div>
   );
 };
 
