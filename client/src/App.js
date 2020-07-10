@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { Fragment } from "react";
 import TodoForm from "./components/TodoForm";
+import "./css/style.css";
 
 const App = (props) => {
   return (
-    <div className="app">
-      <TodoForm />
-    </div>
+    <Fragment>
+      <div className="main">
+        <TodoForm />
+      </div>
+    </Fragment>
   );
 };
 

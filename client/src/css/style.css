@@ -1,0 +1,51 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  font-family: "lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #777;
+  padding: 10rem;
+  box-sizing: border-box;
+  background-color: #f7f7f7; }
+
+.main {
+  padding: 15rem;
+  background-color: #7ed56f; }
+  .main__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 50vh; }
+  .main__todos {
+    display: flex;
+    flex-direction: column; }
+
+.todosList {
+  display: flex;
+  flex-direction: row; }
+  .todosList__incomplete {
+    align-self: flex-start; }
+    .todosList__incomplete--Low {
+      color: yellow; }
+    .todosList__incomplete--Medium {
+      color: orangered; }
+    .todosList__incomplete--High {
+      color: red; }
+  .todosList__complete {
+    text-decoration: line-through;
+    align-self: flex-end; }
+    .todosList__complete--Low {
+      color: yellow; }
+    .todosList__complete--Medium {
+      color: orange; }
+    .todosList__complete--High {
+      color: red; }

@@ -1,1 +1,55 @@
 @import "abstracts/variables";
+@import "base/base";
+
+.main {
+  padding: 15rem;
+  background-color: $color-primary-light;
+
+  &__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 50vh;
+  }
+  // &__form {
+  //   display: flex;
+  //   justify-content: center;
+  // }
+  // &__picker {
+  //   display: flex;
+  //   justify-content: center;
+  // }
+  &__todos {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.todosList {
+  display: flex;
+  flex-direction: row;
+  &__incomplete {
+    align-self: flex-start;
+    &--Low {
+      color: yellow;
+    }
+    &--Medium {
+      color: orangered;
+    }
+    &--High {
+      color: red;
+    }
+  }
+  &__complete {
+    text-decoration: line-through;
+    align-self: flex-end;
+    &--Low {
+      color: yellow;
+    }
+    &--Medium {
+      color: orange;
+    }
+    &--High {
+      color: red;
+    }
+  }
+}
