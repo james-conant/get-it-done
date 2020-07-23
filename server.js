@@ -1,19 +1,21 @@
 const express = require("express");
 const connectDB = require("./config/db");
+const path = require("path");
+const bodyParser = require("body-parser");
 
 const app = express();
 
-// Connect Database
+// connect database
 connectDB();
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get("/", (req, res) => res.send("Hello World"));
+// init middleware
+app.use(express.json({ extended: false }));
+app.use(bodyParser.json()); // <--- Here
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Define Routes
-app.use("/api/users", require("./routes/api/users"));
-
-
+// App Instance
+app.use("/api/todos", require("./routes/todoListRoutes"));
 
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => console.log(`shits up on port ${PORT}`));
+app.listen(PORT, () => console.log(`shits up on port ${PORT}!`));

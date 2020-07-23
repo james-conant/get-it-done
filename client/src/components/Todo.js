@@ -4,7 +4,7 @@ const Todo = ({ removeTodo, todo, index, handleCompleteSubmit }) => {
   return (
     <Fragment>
       <div className="todosList"></div>
-      {todo.isCompleted === true ? (
+      {todo.isCompleted === "true" ? (
         <div
           className={`todosList__complete todosList__complete--${todo.priority}`}
         >
@@ -23,18 +23,6 @@ const Todo = ({ removeTodo, todo, index, handleCompleteSubmit }) => {
       )}
     </Fragment>
   );
-
-  {
-    /* //   isCompleted ? (
-  //     <div className="todo" style="textDecoration: line-through">
-  //       {todo.text}
-  //     </div>
-  //   ) : (
-  //     <div className="todo">{todo.text}</div>
-  //   );
-
-  //   <button onClick={() => handleCompleteSubmit(index)}>Complete</button>; */
-  }
 };
 
 export default Todo;

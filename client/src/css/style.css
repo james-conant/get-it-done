@@ -15,11 +15,12 @@ body {
   color: #777;
   padding: 10rem;
   box-sizing: border-box;
-  background-color: #f7f7f7; }
+  background-color: #edf5e1; }
 
 .main {
-  padding: 15rem;
-  background-color: #7ed56f; }
+  padding: 9rem;
+  border-radius: 8rem;
+  background-color: #5cdb95; }
   .main__top {
     display: flex;
     flex-direction: row;
@@ -37,7 +38,7 @@ body {
     .todosList__incomplete--Low {
       color: yellow; }
     .todosList__incomplete--Medium {
-      color: orangered; }
+      color: orange; }
     .todosList__incomplete--High {
       color: red; }
   .todosList__complete {
@@ -49,3 +50,7 @@ body {
       color: orange; }
     .todosList__complete--High {
       color: red; }
+
+h1 {
+  text-align: center;
+  font-size: 7rem; }

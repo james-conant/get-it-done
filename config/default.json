@@ -1,3 +1,3 @@
 {
-  "mongoURI": "mongodb+srv://6dude:devsync1234@devsync-gyva4.mongodb.net/<dbname>?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://6_dude:MongoDBPassword@todos.q0ukr.mongodb.net/get-it-done?retryWrites=true&w=majority"
 }

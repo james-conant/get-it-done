@@ -1,22 +1,39 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Todos from "./Todos";
+import Axios from "axios";
 
 const TodoForm = (props) => {
-  const [todos, setTodos] = useState([
-    { text: "Learn about React", isCompleted: false, priority: "Low" },
-    { text: "Meet friend for lunch", isCompleted: true, priority: "Medium" },
-    {
-      text: "Build really cool todo app",
-      isCompleted: false,
-      priority: "High",
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
   const [value, setValue] = useState("");
   const [todoPriority, setTodoPriority] = useState("Medium");
 
-  const addTodo = (text, priority) => {
-    const newTodos = [...todos, { text, priority }];
-    setTodos(newTodos);
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const todos = await Axios.get("/api/todos");
+      console.log(todos.data);
+      setTodos(todos.data);
+    };
+    fetchTodos();
+  }, []);
+
+  const addTodo = async (text) => {
+    const newTodos = [
+      ...todos,
+      { text, priority: todoPriority, isCompleted: "false" },
+    ];
+    try {
+      const add = await Axios.post(
+        "/api/todos/add",
+        newTodos[newTodos.length - 1]
+      );
+      const newb = [
+        ...todos,
+        { text, priority: todoPriority, isCompleted: "false", _id: add.data },
+      ];
+      setTodos(newb);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -24,33 +41,42 @@ const TodoForm = (props) => {
     if (!value) {
       return;
     }
-    addTodo(value, todoPriority);
+    addTodo(value);
     setValue("");
     setTodoPriority("Medium");
   };
 
-  const handleCompleteSubmit = (index) => {
+  const handleCompleteSubmit = async (index) => {
     const newTodos = [...todos];
-    // ? (newTodos[index].isCompleted = true)
-    // : (newTodos[index].isCompleted = false);
-    if (!newTodos[index].isCompleted) {
-      newTodos[index].isCompleted = true;
+    if (newTodos[index].isCompleted === "true") {
+      newTodos[index].isCompleted = "false";
     } else {
-      newTodos[index].isCompleted = false;
+      newTodos[index].isCompleted = "true";
     }
+    const id = newTodos[index]._id;
     setTodos(newTodos);
+    try {
+      let todoData = newTodos[index];
+
+      await Axios.post(`/api/todos/update/${id}`, todoData);
+
+      console.log(todoData);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const removeTodo = (index) => {
+  const removeTodo = async (e) => {
+    const that = todos[e]._id;
     const newTodos = [...todos];
-    newTodos.splice(index, 1);
+    newTodos.splice(e, 1);
     setTodos(newTodos);
+    try {
+      await Axios.delete(`/api/todos/delete/${that}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
-
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-  //   setTodos(e);
-  // };
 
   return (
     <Fragment>
